@@ -1,0 +1,17 @@
+<ion-view view-title="Prescriptions">
+  <ion-content>
+    
+    <div class="list" ng-repeat="(index, prescription) in prescriptions">
+      <a href="#/app/prescription/{{ index }}">
+        <div class="item item-divider">
+          {{ prescription.medicalOfficer }} <i class="ion-ios-calendar"></i>{{ prescription.date }}
+        </div>
+      </a>
+      
+        <a class="item" href="#/app/prescription/{{ index }}" ng-repeat="drug in prescription.drugs">
+          {{ drug.name }} , {{ drug.dose }} , {{ drug.usage }}
+        </a>
+    </div>
+
+  </ion-content>
+</ion-view>

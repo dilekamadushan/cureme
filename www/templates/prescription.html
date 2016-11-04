@@ -1,0 +1,19 @@
+
+<ion-view view-title="Prescriptions">
+  <ion-content>
+    
+    <div class="card" ng-repeat="drug in prescriptions[index].drugs">
+        <div class="item item-divider">
+            {{ drug.name }}
+        </div>
+        <div class="item item-text-wrap">
+            This is a basic Card with some text. This includes some text abou the application
+        </div>
+        <div class="item item-divider">
+            I'm a Footer in a Card!
+        </div>
+    </div>
+    {{ prescriptions[index] }}    
+
+  </ion-content>
+</ion-view>

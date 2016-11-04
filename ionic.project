@@ -1,0 +1,13 @@
+{
+  "name": "cureMe",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "sass",
+    "watch",
+    "combine"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}
