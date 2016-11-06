@@ -1,16 +1,73 @@
 <ion-view view-title="Prescriptions">
   <ion-content>
     
+    <br>
+
     <div class="list" ng-repeat="(index, prescription) in prescriptions">
-      <a href="#/app/prescription/{{ index }}">
+      
+      <a href="#/app/prescription/{{ index }}/all">
+        
         <div class="item item-divider">
-          {{ prescription.medicalOfficer }} <i class="ion-ios-calendar"></i>{{ prescription.date }}
+                   {{ prescription.medicalOfficer }}
+          <i class="ion-ios-calendar">{{ prescription.date }}</i> 
         </div>
+
       </a>
       
-        <a class="item" href="#/app/prescription/{{ index }}" ng-repeat="drug in prescription.drugs">
-          {{ drug.name }} , {{ drug.dose }} , {{ drug.usage }}
+      <div ng-if="prescription.drugs.length">
+        <a class="item" href="#/app/prescription/{{ index }}/drugs">
+          Drugs
+          <div ng-if="prescription.pendingDrugs">
+            
+            <span class="badge badge-assertive" ng-if="prescription.pendingDrugs==prescription.drugs.length">
+              {{ prescription.pendingDrugs }}
+            </span>
+
+            <span class="badge badge-energized" ng-if="prescription.pendingDrugs != prescription.drugs.length">
+              {{ prescription.pendingDrugs }}
+            </span>
+          
+          </div>
+
+          <div ng-if="!prescription.pendingDrugs">
+          
+            <span class="badge badge-balanced">
+              <i class="ion-checkmark-circled"></i>
+            </span>
+          
+          </div>
+        
         </a>
+      </div>
+
+      <div ng-if="prescription.reports.length">      
+        <a class="item" href="#/app/prescription/{{ index }}/reports">
+          Report Requests
+          <div ng-if="prescription.pendingReports">
+            
+            <span class="badge badge-assertive" ng-if="prescription.pendingReports==prescription.reports.length">
+              {{ prescription.pendingReports }}
+            </span>
+
+            <span class="badge badge-energized" ng-if="prescription.pendingReports != prescription.reports.length">
+              {{ prescription.pendingReports }}
+            </span>
+          
+          </div>
+
+          <div ng-if="!prescription.pendingReports">
+          
+            <span class="badge badge-balanced">
+              <i class="ion-checkmark-circled"></i>
+            </span>
+          
+          </div>
+
+        </a>
+      </div>
+      
+      <!-- balanced -->
+
     </div>
 
   </ion-content>

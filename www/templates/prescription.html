@@ -1,19 +1,106 @@
 
-<ion-view view-title="Prescriptions">
+<ion-view view-title="Prescription">
   <ion-content>
-    
-    <div class="card" ng-repeat="drug in prescriptions[index].drugs">
-        <div class="item item-divider">
-            {{ drug.name }}
-        </div>
-        <div class="item item-text-wrap">
-            This is a basic Card with some text. This includes some text abou the application
-        </div>
-        <div class="item item-divider">
-            I'm a Footer in a Card!
+      
+    <div ng-if="state=='drugs' || state=='all'">
+
+        <div class="card" ng-repeat="drug in prescriptions[index].drugs">
+            
+            <div class="item item-divider">
+                {{ drug.name }}
+            </div>
+            
+            <div class="item item-text-wrap">
+                <ul class="list">
+                    <li class="item item-toggle">
+                        Dose : {{ drug.dose }}
+                    </li>
+                    <li class="item item-toggle">
+                        Usage : {{ drug.usage }}
+                    </li>
+                    <li class="item item-toggle">
+                        Status :
+                        <label class="toggle toggle-assertive">
+                            <input type="checkbox" ng-model="drug.pending" data-ng-change="toggleStatus('drugs')">
+                
+                            <div class="track">
+                                <div class="handle"></div>
+                            </div>
+                        </label>
+                    </li>
+                </ul>
+                    
+            </div>
+            
+            <div class="item item-divider">
+
+                Issued by : {{ prescriptions[index].medicalOfficer }} 
+                <br>
+                Date : {{ prescriptions[index].date }}
+            
+            </div>
+            
         </div>
     </div>
-    {{ prescriptions[index] }}    
+
+
+    <!-- Reports section -->
+
+    <div ng-if="state=='reports' || state=='all'">
+
+        <div class="card" ng-repeat="report in prescriptions[index].reports">
+            
+            <div class="item item-divider">
+                {{ report.name }}
+            </div>
+            
+            <div class="item item-text-wrap">
+                <ul class="list">
+                    <li class="item item-toggle">
+                        Type : {{ report.type }}
+                    </li>
+                    <li class="item item-toggle">
+                        Instructions : {{ report.instructions }}
+                    </li>
+
+                    <li ng-if="! report.pending">
+                        
+                        <a class="button button-full button-positive" href="#/app/reports">
+                            View Reports
+                        </a>
+
+                    </li>
+
+                    <li class="item item-toggle" ng-if="report.pending">
+                        Status : Pending
+                    </li>
+                        
+                        
+                        <!--
+                            <label class="toggle toggle-assertive">
+                                <input type="checkbox" ng-model="report.pending" data-ng-change="toggleStatus('reports')">
+                                <div class="track">
+                                    <div class="handle"></div>
+                                </div>
+                            </label>
+                        -->                    
+                    
+                    
+                </ul>
+                    
+            </div>
+
+            <div class="item item-divider">
+
+                Issued by : {{ prescriptions[index].medicalOfficer }} 
+                <br>
+                Date : {{ prescriptions[index].date }}
+            
+            </div>
+            
+        </div>
+
+    </div>    
 
   </ion-content>
 </ion-view>
